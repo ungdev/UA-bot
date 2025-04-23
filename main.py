@@ -3,6 +3,7 @@ import requests
 from dotenv import load_dotenv
 import os
 import sys
+import zoneinfo
 
 # Charger les variables d'environnement
 load_dotenv()
@@ -36,7 +37,7 @@ def log(message: str) -> None:
 
 def main() -> None:
     """Fonction principale."""
-    now: datetime = datetime.now()
+    now: datetime = datetime.now(zoneinfo.ZoneInfo("Europe/Paris"))
     time_to_ua: timedelta = datetime.fromtimestamp(UA_TIMESTAMP) - now
     hours_to_ua: int = int(time_to_ua.total_seconds() // 3600)
     days_to_ua: int = int(time_to_ua.total_seconds() // 86400)
