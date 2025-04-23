@@ -8,6 +8,9 @@ import zoneinfo
 # Charger les variables d'environnement
 load_dotenv()
 
+# Configuration de la timezone
+tz: datetime.tzinfo = zoneinfo.ZoneInfo("Europe/Paris")
+
 # Récupération des variables d'environnement
 try:
     UA_TIMESTAMP: int = int(os.getenv('UA_TIMESTAMP', 0)) + 60
@@ -32,12 +35,11 @@ def send_to_discord(message: str) -> None:
 
 def log(message: str) -> None:
     """Écrit un message dans la console."""
-    print(f'{datetime.now()} - {message}\n')
+    print(f'{datetime.now(tz)} - {message}\n')
 
 
 def main() -> None:
     """Fonction principale."""
-    tz: datetime.tzinfo = zoneinfo.ZoneInfo("Europe/Paris")
     now: datetime = datetime.now(tz)
     time_to_ua: timedelta = datetime.fromtimestamp(UA_TIMESTAMP, tz=tz) - now
     hours_to_ua: int = int(time_to_ua.total_seconds() // 3600)
