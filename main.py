@@ -30,9 +30,8 @@ def send_to_discord(message: str) -> None:
 
 
 def log(message: str) -> None:
-    """Écrit un message dans le fichier de log."""
-    with open('main.log', 'a') as log_file:
-        log_file.write(f'{datetime.now()} - {message}\n')
+    """Écrit un message dans la console."""
+    print(f'{datetime.now()} - {message}\n')
 
 
 def main() -> None:
