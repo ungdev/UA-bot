@@ -47,7 +47,7 @@ def main() -> None:
         return
 
     if time_to_ua >= timedelta(weeks=1):
-        if (now.hour, now.minute) == (17, 0):
+        if (now.hour, now.minute) == (17, 0) or True:
             message = f"## Plus que {days_to_ua} jours (environ) avant l'UA ! :clock:"
             send_to_discord(message)
             log(message)
