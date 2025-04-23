@@ -37,8 +37,9 @@ def log(message: str) -> None:
 
 def main() -> None:
     """Fonction principale."""
-    now: datetime = datetime.now(zoneinfo.ZoneInfo("Europe/Paris"))
-    time_to_ua: timedelta = datetime.fromtimestamp(UA_TIMESTAMP) - now
+    tz: datetime.tzinfo = zoneinfo.ZoneInfo("Europe/Paris")
+    now: datetime = datetime.now(tz)
+    time_to_ua: timedelta = datetime.fromtimestamp(UA_TIMESTAMP, tz=tz) - now
     hours_to_ua: int = int(time_to_ua.total_seconds() // 3600)
     days_to_ua: int = int(time_to_ua.total_seconds() // 86400)
 
